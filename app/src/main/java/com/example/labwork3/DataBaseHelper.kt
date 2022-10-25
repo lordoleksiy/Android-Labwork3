@@ -29,12 +29,18 @@ class DataBaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
         onCreate(db)
     }
 
+    fun clear(){
+        val db = this.writableDatabase
+        db.delete(TABLE_CONTACTS, null , null)
+    }
+
     fun addData(data: String){
         val db = this.writableDatabase
         val contentValues = ContentValues()
         contentValues.put(KEY_PASSWORD, data)
         contentValues.put(KEY_TIME, getTime())
         db.insert(TABLE_CONTACTS, null, contentValues)
+        db.close()
     }
 
     @SuppressLint("Range")
@@ -57,6 +63,8 @@ class DataBaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
                 modelList.add(model)
             } while (cursor.moveToNext())
         }
+        db.close()
+        cursor.close()
         return modelList
     }
 

@@ -1,9 +1,9 @@
 package com.example.labwork3.fragments
 
 import CustomPassword
+import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +12,7 @@ import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.labwork3.DataActivity
 import com.example.labwork3.DataBaseHelper
 import com.example.labwork3.R
 
@@ -44,7 +45,13 @@ class Input : Fragment() {
             writeDB()
         }
         view.findViewById<Button>(R.id.showButton).setOnClickListener{
-            readDB()
+            val intent = Intent(context, DataActivity::class.java)
+            startActivity(intent)
+        }
+        view.findViewById<Button>(R.id.clearButton).setOnClickListener{
+            val dataBaseHelper = context?.let { DataBaseHelper(it) }
+            dataBaseHelper?.clear()
+            Toast.makeText(context, "Data is cleared!", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -71,13 +78,6 @@ class Input : Fragment() {
                 Toast.makeText(context, "Data is written to database!", Toast.LENGTH_SHORT).show()
             }
         }
-    }
-
-    fun readDB(){
-        val dataBaseHelper = context?.let { DataBaseHelper(it) }
-        val data = dataBaseHelper?.getData()
-        Log.i("tag", data.toString())
-        Toast.makeText(context, data.toString(), Toast.LENGTH_SHORT).show()
     }
 
     companion object {
