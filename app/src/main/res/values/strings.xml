@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Labwork3</string>
+    <string name="info">Info</string>
+    <string name="input">Input</string>
+    <string name="information">Information</string>
+    <string name="task">
+        Цей фрагмент має лише текстовий посил, тому не зациклюйтесь на ньому.
+        А от вже другий фрагмент призначений для введення паролю і збереження у файл.
+        На тому ж вікні можна запустити нову Актівіті для перегляду записаного паролю.
+        </string>
+    <string name="name">Ковтун Олексій IO-03\n
+                        Варіант: 6\n</string>
+    <string name="result">Result</string>
 </resources>
