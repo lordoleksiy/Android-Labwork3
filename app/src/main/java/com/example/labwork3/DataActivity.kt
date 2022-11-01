@@ -14,16 +14,10 @@ class DataActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_data)
-        findViewById<Button>(R.id.buttonData).setOnClickListener{
-            getData()
-        }
-        findViewById<Button>(R.id.buttonBack).setOnClickListener{
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
     }
 
-    private fun getData(){
+    override fun onStart() {
+        super.onStart()
         val dataBaseHelper = DataBaseHelper(this)
         val data = dataBaseHelper.getData()
         if (data.isEmpty()){
